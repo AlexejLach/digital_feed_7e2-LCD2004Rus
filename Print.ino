@@ -373,7 +373,7 @@ void Print()
     if (SelectMenu == 1)
      {
       lcd.setCursor(8, 0);
-      snprintf(LCD_Row_1, 8, "<%s ", Cone_Info[Cone_Step].Cone_Print);
+      snprintf(LCD_Row_1, 8, "<%s  ", Cone_Info[Cone_Step].Cone_Print);
       lcd.print(LCD_Row_1);
       lcd.setCursor(14, 0);
       lcd.print("Kонус ");                                   
@@ -471,7 +471,7 @@ void Print()
     if (SelectMenu == 1)
      {
       lcd.setCursor(8, 0);
-      snprintf(LCD_Row_1, 8, ">%s ", Cone_Info[Cone_Step].Cone_Print);
+      snprintf(LCD_Row_1, 8, ">%s  ", Cone_Info[Cone_Step].Cone_Print);
       lcd.print(LCD_Row_1);
       lcd.setCursor(14, 0);
       lcd.print("Kонус ");                                   
@@ -663,3 +663,4 @@ void Print()
       
  
 }
+
