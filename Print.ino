@@ -45,18 +45,21 @@ void Print()
    }     
    else if (Ruler_flag == true)
    {
-           lcd.setCursor(0, 0);
+
+         
+     
+         lcd.setCursor(0, 0);
          lcd.print("      Линейка       ");
          lcd.setCursor(0, 1);
-         if (Size_X_mm%100 >= 0)
+         if (Size_X_mm%100 <= 0)
          lcd.print("Ocь X: \6    ");
          else 
          lcd.print("Ocь X: \6   -"); 
-         snprintf(LCD_Row_7, 7, "%3ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+         snprintf(LCD_Row_7, 7, "%3ld.%02d", abs(X_pos/5/100), abs(X_pos/5%100));
          lcd.print(LCD_Row_7);
          lcd.print("мм");  
          lcd.setCursor(0, 2);
-         if (Size_X_mm%100 >= 0)
+         if (Size_X_mm%100 <= 0)
          lcd.print("Ocь X: \7    ");
          else 
          lcd.print("Ocь X: \7   -");
@@ -64,7 +67,7 @@ void Print()
          lcd.print(LCD_Row_1);
          lcd.print("мм");         
          lcd.setCursor(0, 3);
-         if (Size_Z_mm%100 >= 0)
+         if (Size_Z_mm%100 <= 0)
          lcd.print("Ocь Z:      ");
          else 
          lcd.print("Ocь Z:     -");
@@ -106,9 +109,7 @@ void Print()
       {
         case Sub_Mode_Thread_Int:
              lcd.setCursor(0, 0);
-             lcd.print(" Bнyтpе ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   "); 
+             lcd.print(" Bнyтpе "); 
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_4, 3, "%2d", (Thread_Info[Thread_Step].Pass - Pass_Nr+1 + PASS_FINISH + Pass_Fin) + Thr_Pass_Summ );
@@ -117,13 +118,6 @@ void Print()
         case Sub_Mode_Thread_Man:
              lcd.setCursor(0, 0);
              lcd.print(" Pyчная ");
-             lcd.setCursor(0, 1);
-             if (Size_X_mm%100 >= 0)
-             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             else 
-             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             lcd.print(LCD_Row_7);
-             lcd.print(" ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_4, 3, "%2d", (Thread_Info[Thread_Step].Pass + PASS_FINISH + Pass_Fin) + Thr_Pass_Summ );
@@ -132,33 +126,42 @@ void Print()
         case Sub_Mode_Thread_Ext:
              lcd.setCursor(0, 0);
              lcd.print(" Hapyжн ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_4, 3, "%2d", (Thread_Info[Thread_Step].Pass - Pass_Nr+1 + PASS_FINISH + Pass_Fin) + Thr_Pass_Summ );
              lcd.print(LCD_Row_4);
              break;
-      }
+             }
              lcd.setCursor(8, 3);
              lcd.print(" Об/мин: "); 
              snprintf(LCD_Row_3, 4, "%3d", Thread_Info[Thread_Step].Limit_Print); 
              lcd.print(LCD_Row_3);
+             
+               ///////         Линейка     ////////
+             
+             lcd.setCursor(0, 1);
+             if (Size_X_mm%100 <= 0)
+             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             else 
+             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             lcd.print(LCD_Row_7);
+             lcd.print(" ");
+
              lcd.setCursor(0, 2);
-             if (Size_X_mm%100 >= 0)
+             if (Size_X_mm%100 <= 0)
              snprintf(LCD_Row_6, 20, "X %2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              else 
              snprintf(LCD_Row_6, 20, "X-%2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              lcd.print(LCD_Row_6);
              lcd.print(" ");
-             
+                      
              lcd.setCursor(0, 3);
-             if (Size_Z_mm%100 >= 0)
+             if (Size_Z_mm%100 <= 0)
              snprintf(LCD_Row_5, 20, "Z %2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              else 
              snprintf(LCD_Row_5, 20, "Z-%2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              lcd.print(LCD_Row_5);
-             lcd.print(" ");
+             lcd.print(" "); 
      } 
      else if (SelectMenu == 2) 
      {
@@ -192,8 +195,6 @@ void Print()
         case Sub_Mode_Feed_Int:
              lcd.setCursor(0, 0);      
              lcd.print(" Внутре ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total-Pass_Nr+1);
@@ -204,13 +205,6 @@ void Print()
         case Sub_Mode_Feed_Man:             
              lcd.setCursor(0, 0);      
              lcd.print(" Ручной ");
-             lcd.setCursor(0, 1);
-             if (Size_X_mm%100 >= 0)
-             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             else 
-             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             lcd.print(LCD_Row_7);
-             lcd.print(" ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total);
@@ -222,8 +216,6 @@ void Print()
         case Sub_Mode_Feed_Ext:
              lcd.setCursor(0, 0);      
              lcd.print(" Наружн ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total-Pass_Nr+1);
@@ -238,26 +230,32 @@ void Print()
              else {
              snprintf(LCD_Row_4, 5, " %1d.%01d", Ap/100, Ap%100);
              lcd.print(LCD_Row_4);} 
+             
+             ///////         Линейка     ////////
+             
+             lcd.setCursor(0, 1);
+             if (Size_X_mm%100 <= 0)
+             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             else 
+             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             lcd.print(LCD_Row_7);
+             lcd.print(" ");
 
              lcd.setCursor(0, 2);
-             if (Size_X_mm%100 >= 0)
+             if (Size_X_mm%100 <= 0)
              snprintf(LCD_Row_6, 20, "X %2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              else 
              snprintf(LCD_Row_6, 20, "X-%2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              lcd.print(LCD_Row_6);
              lcd.print(" ");
-             
-             
+                      
              lcd.setCursor(0, 3);
-             if (Size_Z_mm%100 >= 0)
+             if (Size_Z_mm%100 <= 0)
              snprintf(LCD_Row_5, 20, "Z %2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              else 
              snprintf(LCD_Row_5, 20, "Z-%2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              lcd.print(LCD_Row_5);
-             lcd.print(" ");
-             lcd.leftToRight(); 
-              
-              
+             lcd.print(" ");              
      } 
    }
    
@@ -279,8 +277,6 @@ void Print()
         case Sub_Mode_aFeed_Int:
              lcd.setCursor(0, 0);      
              lcd.print(" Внутре ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total-Pass_Nr+1);
@@ -291,13 +287,6 @@ void Print()
         case Sub_Mode_aFeed_Man:
              lcd.setCursor(0, 0);      
              lcd.print(" Ручной ");
-             lcd.setCursor(0, 1);
-             if (Size_X_mm%100 >= 0)
-             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             else 
-             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             lcd.print(LCD_Row_7);
-             lcd.print(" ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total);
@@ -308,8 +297,6 @@ void Print()
         case Sub_Mode_aFeed_Ext:
              lcd.setCursor(0, 0);      
              lcd.print(" Наружн ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total-Pass_Nr+1);
@@ -324,21 +311,33 @@ void Print()
              else {
              snprintf(LCD_Row_4, 5, " %1d.%01d", Ap/100, Ap%100);
              lcd.print(LCD_Row_4);}
+
+               ///////         Линейка     ////////
+             
+             lcd.setCursor(0, 1);
+             if (Size_X_mm%100 <= 0)
+             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             else 
+             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             lcd.print(LCD_Row_7);
+             lcd.print(" ");
+
              lcd.setCursor(0, 2);
-             if (Size_X_mm%100 >= 0)
+             if (Size_X_mm%100 <= 0)
              snprintf(LCD_Row_6, 20, "X %2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              else 
              snprintf(LCD_Row_6, 20, "X-%2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              lcd.print(LCD_Row_6);
              lcd.print(" ");
-             
+                      
              lcd.setCursor(0, 3);
-             if (Size_Z_mm%100 >= 0)
+             if (Size_Z_mm%100 <= 0)
              snprintf(LCD_Row_5, 20, "Z %2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              else 
              snprintf(LCD_Row_5, 20, "Z-%2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              lcd.print(LCD_Row_5);
-             lcd.print(" ");
+             lcd.print(" "); 
+          
              
     }
         else if (SelectMenu == 2)
@@ -386,8 +385,6 @@ void Print()
         case Sub_Mode_Cone_Int:
              lcd.setCursor(0, 0);      
              lcd.print(" Внутре ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total-Pass_Nr+1);
@@ -400,13 +397,6 @@ void Print()
         case Sub_Mode_Cone_Man:
              lcd.setCursor(0, 0);      
              lcd.print(" Ручной ");
-             lcd.setCursor(0, 1);
-             if (Size_X_mm%100 >= 0)
-             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             else 
-             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             lcd.print(LCD_Row_7);
-             lcd.print(" ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total);
@@ -419,8 +409,6 @@ void Print()
         case Sub_Mode_Cone_Ext:
              lcd.setCursor(0, 0);      
              lcd.print(" Наружн ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total-Pass_Nr+1);
@@ -431,21 +419,31 @@ void Print()
              lcd.print(LCD_Row_4);             
              break;
             }
+              ///////         Линейка     ////////
+             
+             lcd.setCursor(0, 1);
+             if (Size_X_mm%100 <= 0)
+             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             else 
+             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             lcd.print(LCD_Row_7);
+             lcd.print(" ");
+
              lcd.setCursor(0, 2);
-             if (Size_X_mm%100 >= 0)
+             if (Size_X_mm%100 <= 0)
              snprintf(LCD_Row_6, 20, "X %2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              else 
              snprintf(LCD_Row_6, 20, "X-%2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              lcd.print(LCD_Row_6);
              lcd.print(" ");
-             
+                      
              lcd.setCursor(0, 3);
-             if (Size_Z_mm%100 >= 0)
+             if (Size_Z_mm%100 <= 0)
              snprintf(LCD_Row_5, 20, "Z %2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              else 
              snprintf(LCD_Row_5, 20, "Z-%2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              lcd.print(LCD_Row_5);
-             lcd.print(" ");  
+             lcd.print(" "); 
      }
      else if (SelectMenu == 2)
      {
@@ -484,8 +482,6 @@ void Print()
         case Sub_Mode_Cone_Int:
              lcd.setCursor(0, 0);      
              lcd.print(" Внутре ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total-Pass_Nr+1);
@@ -498,13 +494,6 @@ void Print()
         case Sub_Mode_Cone_Man:
              lcd.setCursor(0, 0);      
              lcd.print(" Ручной ");
-             lcd.setCursor(0, 1);
-             if (Size_X_mm%100 >= 0)
-             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             else 
-             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
-             lcd.print(LCD_Row_7);
-             lcd.print(" ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total);
@@ -517,8 +506,6 @@ void Print()
         case Sub_Mode_Cone_Ext:
              lcd.setCursor(0, 0);      
              lcd.print(" Наружн ");
-             lcd.setCursor(0, 1);      
-             lcd.print("  Авто   ");
              lcd.setCursor(8, 2);
              lcd.print(" Циклов:  ");
              snprintf(LCD_Row_3, 3, "%2d", Pass_Total-Pass_Nr+1);
@@ -529,16 +516,26 @@ void Print()
              lcd.print(LCD_Row_4);            
              break;
             } 
+            ///////         Линейка     ////////
+             
+             lcd.setCursor(0, 1);
+             if (Size_X_mm%100 <= 0)
+             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             else 
+             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             lcd.print(LCD_Row_7);
+             lcd.print(" ");
+
              lcd.setCursor(0, 2);
-             if (Size_X_mm%100 >= 0)
+             if (Size_X_mm%100 <= 0)
              snprintf(LCD_Row_6, 20, "X %2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              else 
              snprintf(LCD_Row_6, 20, "X-%2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
              lcd.print(LCD_Row_6);
              lcd.print(" ");
-             
+                      
              lcd.setCursor(0, 3);
-             if (Size_Z_mm%100 >= 0)
+             if (Size_Z_mm%100 <= 0)
              snprintf(LCD_Row_5, 20, "Z %2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
              else 
              snprintf(LCD_Row_5, 20, "Z-%2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
@@ -575,8 +572,8 @@ void Print()
          lcd.print(LCD_Row_1);
          lcd.print("мм");
          lcd.setCursor(0, 1);
-         lcd.setCursor(0, 1);
-         lcd.print("Подача,  мм/об: ");
+         lcd.setCursor(8, 1);      
+         lcd.print(" Подача:");
          snprintf(LCD_Row_2, 5, "%1d.%02d", Feed_mm/100, Feed_mm%100);
          lcd.print(LCD_Row_2);
           if (Sub_Mode_Sphere == Sub_Mode_Sphere_Man)
@@ -589,14 +586,40 @@ void Print()
              lcd.setCursor(11, 0);
              lcd.print("  Включен");
           }
-          lcd.setCursor(0, 2);
-          lcd.print("Оставить ножку \6"); 
+          lcd.setCursor(8, 2);
+          lcd.print(" Ножка:\6"); 
           snprintf(LCD_Row_3, 5, "%ld.%02ld", Bar_R_mm*2/100, Bar_R_mm*2%100);
           lcd.print(LCD_Row_3);
-          lcd.setCursor(0, 3);
-          lcd.print("Проходов осталось");
+          lcd.setCursor(8, 3);
+          lcd.print(" Заходов:");
           snprintf(LCD_Row_4, 4, "%3ld", Pass_Total_Sphr+2-Pass_Nr); 
           lcd.print(LCD_Row_4); 
+          
+              ///////         Линейка     ////////
+              
+             lcd.setCursor(0, 1);
+             if (Size_X_mm%100 <= 0)
+             snprintf(LCD_Row_7, 20, "\6 %2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             else 
+             snprintf(LCD_Row_7, 20, "\6-%2ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
+             lcd.print(LCD_Row_7);
+             lcd.print(" ");
+
+             lcd.setCursor(0, 2);
+             if (Size_X_mm%100 <= 0)
+             snprintf(LCD_Row_6, 20, "X %2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
+             else 
+             snprintf(LCD_Row_6, 20, "X-%2ld.%02d", abs(Size_X_mm/100), abs(Size_X_mm%100));
+             lcd.print(LCD_Row_6);
+             lcd.print(" ");
+                      
+             lcd.setCursor(0, 3);
+             if (Size_Z_mm%100 <= 0)
+             snprintf(LCD_Row_5, 20, "Z %2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
+             else 
+             snprintf(LCD_Row_5, 20, "Z-%2ld.%02d", abs(Size_Z_mm/100), abs(Size_Z_mm%100));
+             lcd.print(LCD_Row_5);
+             lcd.print(" "); 
       }
       else if (SelectMenu == 2)
       {  
