@@ -1436,7 +1436,8 @@ void Key_Up_Pressed()
         }
         else if (SelectMenu == 2) 
         {
-         X_pos = 0; 
+         X_pos = 0;
+         
          Beep();
         }
         Print();
@@ -1557,7 +1558,8 @@ void Key_Down_Pressed()
          }
          else if (SelectMenu == 2) 
          {
-          X_pos = 0; 
+          Z_pos = 0;
+      
           Beep();
          }
          Print();
@@ -1578,7 +1580,7 @@ void Key_Down_Pressed()
             }
          else if (SelectMenu == 3) 
          {
-          X_pos = 0; 
+          Z_pos = 0; 
           Beep();
          }
          Print();
@@ -1604,7 +1606,7 @@ void Key_Down_Pressed()
          }
          else if (SelectMenu == 3) 
          {
-          X_pos = 0; 
+          Z_pos = 0; 
           Beep();
          }          
          Print();
@@ -1629,7 +1631,7 @@ void Key_Down_Pressed()
             }            
          else if (SelectMenu == 3) 
          {
-          X_pos = 0; 
+          Z_pos = 0; 
           Beep();
          }
          Print();
@@ -1653,7 +1655,7 @@ void Key_Down_Pressed()
          }
          else if (SelectMenu == 3)
          {
-          X_pos = 0; 
+          Z_pos = 0; 
           Beep();
          }
          Print();
@@ -1678,7 +1680,11 @@ void Key_Left_Pressed()
             }
          else if (SelectMenu == 2) 
          {
-          Z_pos = 0;  
+         if (flag_Scale_x1 == ON){
+         for (int i = 0; i < 5; i ++)
+         { X_pos -- ;}}else {
+         for (int i = 0; i < 100; i ++)  
+         { X_pos -- ;}} 
           Beep();
          }         
          Print();
@@ -1706,7 +1712,11 @@ void Key_Left_Pressed()
          }
          else if (SelectMenu == 3) 
          {
-          Z_pos = 0;  
+         if (flag_Scale_x1 == ON){
+         for (int i = 0; i < 5; i ++)
+         { X_pos -- ;}}else {
+         for (int i = 0; i < 100; i ++)  
+         { X_pos -- ;}}   
           Beep();
          }          
          Print();
@@ -1733,7 +1743,11 @@ void Key_Left_Pressed()
          }
          else if (SelectMenu == 3) 
          {
-          Z_pos = 0;  
+         if (flag_Scale_x1 == ON){
+         for (int i = 0; i < 5; i ++)
+         { X_pos -- ;}}else {
+         for (int i = 0; i < 100; i ++)  
+         { X_pos -- ;}}   
           Beep();     
          }
          Print();
@@ -1759,7 +1773,11 @@ void Key_Left_Pressed()
             }
             else if (SelectMenu == 3) 
             {
-              Z_pos = 0;  
+           if (flag_Scale_x1 == ON){
+           for (int i = 0; i < 5; i ++)
+           { X_pos -- ;}}else {
+           for (int i = 0; i < 100; i ++)  
+           { X_pos -- ;}}   
               Beep();
             }            
             Print();
@@ -1783,7 +1801,11 @@ void Key_Left_Pressed()
             }
          else if (SelectMenu == 3) 
             {
-             Z_pos = 0;  
+            if (flag_Scale_x1 == ON){
+            for (int i = 0; i < 5; i ++)
+            { X_pos -- ;}}else {
+            for (int i = 0; i < 100; i ++)  
+            { X_pos -- ;}}  
              Beep();
             }              
          Print();
@@ -1809,8 +1831,13 @@ void Key_Right_Pressed()
             }
          else if (SelectMenu == 2) 
          {
-          Z_pos = 0;  
-          Beep();
+         if (flag_Scale_x1 == ON){
+         for (int i = 0; i < 5; i ++)
+         { X_pos ++ ;}}else {
+         for (int i = 0; i < 100; i ++)  
+         {X_pos ++ ;}} 
+                                                     
+         Beep();  
          }
          Print();
          break;
@@ -1836,7 +1863,11 @@ void Key_Right_Pressed()
          }
          else if (SelectMenu == 3) 
          {
-          Z_pos = 0;  
+         if (flag_Scale_x1 == ON){
+         for (int i = 0; i < 5; i ++)
+         { X_pos ++ ;}}else {
+         for (int i = 0; i < 100; i ++)  
+         {X_pos ++ ;}} 
           Beep();
          }        
          Print();
@@ -1863,7 +1894,11 @@ void Key_Right_Pressed()
          }
          else if (SelectMenu == 3)
          {
-          Z_pos = 0;  
+         if (flag_Scale_x1 == ON){
+         for (int i = 0; i < 5; i ++)
+         { X_pos ++ ;}}else {
+         for (int i = 0; i < 100; i ++)  
+         {X_pos ++ ;}}   
           Beep();        
          }
          Print();
@@ -1889,7 +1924,11 @@ void Key_Right_Pressed()
             }
          else if (SelectMenu == 3) 
             {
-              Z_pos = 0;  
+         if (flag_Scale_x1 == ON){
+         for (int i = 0; i < 5; i ++)
+         { X_pos ++ ;}}else {
+         for (int i = 0; i < 100; i ++)  
+         {X_pos ++ ;}}   
               Beep();
             }             
          Print();
@@ -1913,7 +1952,11 @@ void Key_Right_Pressed()
             } 
          else if (SelectMenu == 3) 
             {
-              Z_pos = 0; 
+         if (flag_Scale_x1 == ON){
+         for (int i = 0; i < 5; i ++)
+         { X_pos ++ ;}}else {
+         for (int i = 0; i < 100; i ++)  
+         {X_pos ++ ;}}  
               Beep();
             }                     
          Print();
