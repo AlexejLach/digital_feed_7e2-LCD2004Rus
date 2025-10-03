@@ -989,7 +989,7 @@ void loop()
 {
   Spindle();
   
-  Size_X_mm = MX_pos / ((float)MOTOR_X_STEP_PER_REV / SCREW_X * McSTEP_X);
+  MSize_X_mm = MX_pos / ((float)MOTOR_X_STEP_PER_REV / SCREW_X * McSTEP_X);
   Size_X_mm = X_pos / ((float)MOTOR_X_STEP_PER_REV / SCREW_X * McSTEP_X);
   Size_Z_mm = Z_pos / ((float)MOTOR_Z_STEP_PER_REV / SCREW_Z * McSTEP_Z);
   Spindle_Angle = Enc_Pos * 360000 / ENC_TICK;
@@ -1708,3 +1708,4 @@ ISR (TIMER3_COMPB_vect)
 
 
 // ***** End ***** ///////////////////////////////////////////////////
+
