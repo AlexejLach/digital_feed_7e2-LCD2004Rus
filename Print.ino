@@ -55,7 +55,7 @@ void Print()
          lcd.print("Ocь X: \6    ");
          else 
          lcd.print("Ocь X: \6   -"); 
-         snprintf(LCD_Row_7, 7, "%3ld.%02d", abs(X_pos/5/100), abs(X_pos/5%100));
+         snprintf(LCD_Row_7, 7, "%3ld.%02d", abs(Size_X_mm*2/100), abs(Size_X_mm*2%100));
          lcd.print(LCD_Row_7);
          lcd.print("мм");  
          lcd.setCursor(0, 2);
@@ -686,5 +686,6 @@ void Print()
       
  
 }
+
 
 
