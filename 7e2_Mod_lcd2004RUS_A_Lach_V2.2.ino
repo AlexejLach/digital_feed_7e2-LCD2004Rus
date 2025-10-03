@@ -467,8 +467,8 @@ byte Submode_Old = 0;
 #define Mode_Read             (PINC & B11111111)
 byte Mode_Old = 0;
 
-#define DELAY_ENTER_KEYCYCLE 5        // Задержка для входа в режим автонажатия кнопок меню. Значения от 1 до разумного максимума
-#define DELAY_INTO_KEYCYCLE  1        // Интервал срабатывания автонажатия кнопок меню.      Значения от 1 до DELAY_ENTER_KEYCYCLE
+#define DELAY_ENTER_KEYCYCLE 2        // Задержка для входа в режим автонажатия кнопок меню. Значения от 1 до разумного максимума
+#define DELAY_INTO_KEYCYCLE  0        // Интервал срабатывания автонажатия кнопок меню.      Значения от 1 до DELAY_ENTER_KEYCYCLE
 
 
 enum Mode
@@ -1703,3 +1703,4 @@ ISR (TIMER3_COMPB_vect)
 
 
 // ***** End ***** ///////////////////////////////////////////////////
+
