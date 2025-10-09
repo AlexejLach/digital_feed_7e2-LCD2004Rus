@@ -824,7 +824,7 @@ void setup()
   _delay_ms(500);
   lcd.begin(20, 4);
   lcd.setCursor(0, 0);
-  lcd.print("         А.Л        ");
+  lcd.print("    А.Л  -  stiz    ");
   lcd.setCursor(0, 1);
   lcd.print(" Система управления ");
   lcd.setCursor(0, 2);
@@ -1712,3 +1712,4 @@ ISR (TIMER3_COMPB_vect)
 
 
 // ***** End ***** ///////////////////////////////////////////////////
+
